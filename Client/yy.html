@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>语音识别</title>
+	<style>
+		/* 添加样式以确保提示窗口显示在页面中心 */
+		#successMessage {
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #4CAF50;
+			color: white;
+			padding: 15px;
+			border-radius: 5px;
+			text-align: center;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+		}
+	</style>
+
+</head>
+<div id="successMessage">
+	成功登录！
+</div>
+</head>
+
+<body style="margin-left: 3%">
+	<script src="./js/recorder-core.js" charset="UTF-8"></script>
+	<script src="./js/wav.js" charset="UTF-8"></script>
+	<script src="./js/pcm.js" charset="UTF-8"></script>
+
+	<h5>语音指令说明： 
+		1.拨打xxx电话  2.拨通xxxd电话 3. 结束通话  4.语音反馈询问信息是否正确的时候回复‘信息正确’ 5.语音询问是否确定结束通话的时候回复‘确定’ 
+		注：在说第四第五条指令的时候，听到语音播放完成之后，等待一秒再说对应的指令
+	</h5>
+	<label for="nameInput">请输入您的姓名：</label>
+	<input type="text" id="nameInput">
+	<button id="submitButton">提交</button>
+	<p id="output"></p>
+	<script>
+
+        document.getElementById("submitButton").addEventListener("click", function() {
+            var submitButton = document.getElementById("submitButton");
+            submitButton.style.display = "none";
+        // 显示提示窗口
+        var successMessage = document.getElementById("successMessage");
+        successMessage.style.display = "block";
+
+        // 设置定时器，在0.5秒后隐藏提示窗口
+        setTimeout(function() {
+            successMessage.style.display = "none";
+        }, 1000);
+        });
+    </script>
+
+	<div class="div_class_topArea">
+		<div class="div_class_recordControl">
+			语音识别结果显示：<br>
+			<textarea rows="10" id="varArea" readonly="true" style="width: 100%; height: 100%"></textarea><br>
+			<!-- <div id="info_div">请点击开始</div> -->
+			<div class="div_class_buttons">
+				<!-- <button id="btnConnect">连接</button> -->
+				<button id="btnStart">开始</button>
+				<button id="btnStop">停止</button>
+			</div>
+			<!-- <audio id="audio_record" type="audio/wav" controls style="margin-top: 12px; width: 100%;"></audio> -->
+			<div id="videoContainer">
+				<video id="localVideo" autoplay muted playsinline>本地窗口</video>
+			</div>
+		</div>
+	</div>
+    <script>localStorage.setItem('sourcePage', 'YY');</script>
+	<script src="./js/tts.js" charset="utf-8"></script>
+	<script src="./js/wsconnecter.js" charset="utf-8"></script>
+	<script src="./js/main.js" charset="utf-8"></script>
+    <script src="./js/main_start.js"></script>
+    <script src="./js/adapter.js"></script>
+</body>
+
+</html>

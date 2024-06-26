@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>XUTAO WebRTC demo</title>
+
+        <style>
+            /* 添加样式以确保提示窗口显示在页面中心 */
+            #successMessage {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #4CAF50;
+                color: white;
+                padding: 15px;
+                border-radius: 5px;
+                text-align: center;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            }
+        </style>
+
+    </head>
+    <div id="successMessage">
+        成功登录！
+    </div>
+
+    <h1>XUTAO WebRTC demo</h1>
+
+    <label for="nameInput">请输入您的姓名：</label>
+	<input type="text" id="nameInput">
+	<button id="submitButton">提交</button>
+	<p id="output"></p>
+
+    <script>
+
+        document.getElementById("submitButton").addEventListener("click", function() {
+            var submitButton = document.getElementById("submitButton");
+            submitButton.style.display = "none";
+        // 显示提示窗口
+        var successMessage = document.getElementById("successMessage");
+        successMessage.style.display = "block";
+
+        // 设置定时器，在0.5秒后隐藏提示窗口
+        setTimeout(function() {
+            successMessage.style.display = "none";
+        }, 1000);
+        });
+    </script>
+
+    <div id="buttons">
+        <audio id="audioPlayer" controls></audio>
+        <input id="zero-RoomID" type="text" placeholder="请输入房间ID" maxlength="40"/>
+        <button id="joinBtn" type="button">加入</button>
+        <button id="leavBtn" type="button">离开</button>
+    <!-- </div>
+    <div id="videos">
+        <video id="localVideo" autoplay muted playsinline>本地窗口</video>
+        <video id="remotelVideo1" autoplay playsinline>远端窗口</video>
+        <video id="remotelVideo2" autoplay playsinline>远端窗口</video>
+        <video id="remotelVideo3" autoplay playsinline>远端窗口</video>
+        <video id="remotelVideo4" autoplay playsinline>远端窗口</video>
+        <video id="remotelVideo5" autoplay playsinline>远端窗口</video>
+    </div> -->
+    <div id="videoContainer">
+        <video id="localVideo" autoplay muted playsinline>本地窗口</video>
+    </div>
+    <script>localStorage.setItem('sourcePage', 'SD');</script>
+	<script src="./js/tts.js" charset="utf-8"></script>
+    <script src="./js/main_start.js"></script>
+    <script src="./js/adapter.js"></script>
+    
+</html>
+
+
